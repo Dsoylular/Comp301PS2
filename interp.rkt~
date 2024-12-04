@@ -174,10 +174,11 @@
                      ))
 
       (rational-exp (num1 num2)
-                    (if (= 0 num2)
-                        (eopl:error 'rational-exp "Denominator cannot be zero") 
-                        (rational-val (cons num1 num2))
-                        ))
+                    (let ((n1 (expval->num (value-of num1 env)))
+                          (n2 (expval->num (value-of num2 env))))
+                      (if (zero? n2)
+                          (eopl:error 'rational-exp "Denominator cannot be zero")
+                          (rational-val (cons n1 n2)))))
       )))
 
 ;;mul-exp helper
