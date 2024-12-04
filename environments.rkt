@@ -30,9 +30,9 @@
         'y (num-val 2)
         (extend-env
          'x (num-val 4)
-         (empty-env))))
+      (empty-env)))))))
       ;; -----------------------
-)))
+
 ;;;;;;;;;;;;;;;; environment constructors and observers ;;;;;;;;;;;;;;;;
 
 (define empty-env
