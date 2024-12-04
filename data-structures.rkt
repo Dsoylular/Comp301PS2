@@ -18,7 +18,7 @@
   ;; INSERT YOUR CODE HERE 
   ;; -----------------------
   
-  (list-val(value list?))
+  (list-val(value numlist?))
   
   (rational-val
    (value pair?))
@@ -113,11 +113,11 @@
 
 ;;helpers
 
-(define (list? lst)
+(define (numlist? lst)
   (if (list? lst)
   (if (null? lst)
       #t
       (if (number? (car lst))
-          (list? (cdr lst))
+          (numlist? (cdr lst))
           #f))
    #f))

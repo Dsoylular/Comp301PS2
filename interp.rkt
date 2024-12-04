@@ -44,7 +44,7 @@
                           ;; INSERT YOUR CODE HERE 
                           ;; -----------------------
                           ((= op 3) (/ num1 num2))
-                          ((= op 4) (- num1 num2))
+                          (else (- num1 num2))
                         )))
                     
                     ((and (number? num1) (not (number? num2)))
@@ -57,8 +57,8 @@
                             ;; -----------------------
                             ;; INSERT YOUR CODE HERE 
                             ;; -----------------------
-                            ((= op 3) (cons (* num1 (cdr num2)) (car num2)))
-                            ((= op 4) (cons (- (* num1 (cdr num2)) (car num2)) (cdr num2)))
+                            ((= op 3) (cons (* num1 num2bot) num2top))
+                            (else (cons (- (* num1 num2bot) num2top) num2bot))
                           ))))
 
                     ((and (number? num2) (not (number? num1)))
@@ -71,8 +71,8 @@
                             ;; -----------------------
                             ;; INSERT YOUR CODE HERE 
                             ;; -----------------------
-                            ((= op 3) (cons (* num1bot (cdr num2)) (car num2)))
-                            ((= op 4) (cons (- (* num1bot (cdr num2)) (car num2)) (cdr num2)))
+                            ((= op 3) (cons num1top (* num2 num1bot)))
+                            (else (cons (- num1top (* num2 num1bot)) num1bot))
                           ))))
 
                     (else
@@ -87,8 +87,8 @@
                             ;; -----------------------
                             ;; INSERT YOUR CODE HERE 
                             ;; -----------------------
-                            ((= op 3) (cons (* num1top (cdr num2)) (* num1bot (car num2))))
-                            ((= op 4) (cons (- (* num1top (cdr num2)) (* num1bot (car num2))) (* num1bot (cdr num2))))
+                            ((= op 3) (cons (* num1top num2bot) (* num1bot num2top)))
+                            (else (cons (- (* num1top num2bot) (* num2top num1bot)) (* num1bot num2bot)))
                           ))))))))
       (zero?-exp (exp1)
                  (let ((val1 (value-of exp1 env)))
@@ -174,11 +174,10 @@
                      ))
 
       (rational-exp (num1 num2)
-                    (let ((n1 (expval->num (value-of num1 env)))
-                          (n2 (expval->num (value-of num2 env))))
-                      (if (zero? n2)
-                          (eopl:error 'rational-exp "Denominator cannot be zero")
-                          (rational-val (cons n1 n2)))))
+                    (if (= 0 num2)
+                        (eopl:error 'rational-exp "Denominator cannot be zero") 
+                        (rational-val (cons num1 num2))
+                        ))
       )))
 
 ;;mul-exp helper

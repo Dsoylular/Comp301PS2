@@ -36,9 +36,11 @@
     (expression
      ("let" identifier "=" expression "in" expression)
      let-exp)   
-
+ 
     ;; -----------------------
+    
     ;; INSERT YOUR CODE HERE
+    ;; -----------------------
 
     (expression (identifier) var-exp)
     
@@ -60,7 +62,7 @@
      if-elif-exp)
 
     (expression
-     ("(" expression "/" expression ")")
+     ("(" number "/" number ")")
      rational-exp)
 
     (expression
@@ -70,8 +72,7 @@
     (expression
      ("simpl(" expression ")")
      simpl-exp)
-    ;; -----------------------
-
+   
 
     ;; -----------------------
 ))
