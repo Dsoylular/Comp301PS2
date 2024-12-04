@@ -18,7 +18,7 @@
   ;; INSERT YOUR CODE HERE 
   ;; -----------------------
   
-  (list-val(value numlist?))
+  (list-val(value list?))
   
   (rational-val
    (value pair?))
@@ -113,7 +113,7 @@
 
 ;;helpers
 
-(define (numlist? lst)
+(define (list? lst)
   (if (list? lst)
   (if (null? lst)
       #t
