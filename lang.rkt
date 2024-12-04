@@ -20,6 +20,7 @@
     ;; INSERT YOUR CODE HERE 
     ;; -----------------------
 
+
     ;; -----------------------
   ))
 
@@ -28,24 +29,28 @@
     
     (expression (number) const-exp)
 
+    (expression
+     ("zero?" "(" expression ")")
+     zero?-exp)
+    
+    (expression
+     ("let" identifier "=" expression "in" expression)
+     let-exp)   
+
+    ;; -----------------------
+    ;; INSERT YOUR CODE HERE
+
     (expression (identifier) var-exp)
-
-    ;; -----------------------
-    ;; INSERT YOUR CODE HERE 
-    ;; -----------------------
-
+    
     (expression
-     ("create-new-list()")
-     list-exp)
-
+     ("create-new-list" "(" ")") list-exp)
+    
     (expression
-     ("cons" expression "to" expression)
-     cons-exp)
-
+     ("cons" expression "to" expression) cons-exp)
+    
     (expression
-     ("multiplication" "(" expression ")")
-     mul-exp)
-
+     ("multiplication" "(" expression ")") mul-exp)
+    
     (expression
      ("min" "(" expression ")")
      min-exp)
@@ -55,7 +60,7 @@
      if-elif-exp)
 
     (expression
-     ("(" number "/" number ")")
+     ("(" expression "/" expression ")")
      rational-exp)
 
     (expression
@@ -63,17 +68,10 @@
      op-exp)
 
     (expression
-     ("zero?(" expression ")")
-     zero?-exp)
-
-    (expression
-     ("let" identifier "=" expression "in" expression)
-     let-exp)
-
-    (expression
      ("simpl(" expression ")")
      simpl-exp)
-    
+    ;; -----------------------
+
 
     ;; -----------------------
 ))

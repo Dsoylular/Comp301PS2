@@ -13,15 +13,19 @@
    (value number?))
   (bool-val
    (boolean boolean?))
+  
   ;; -----------------------
   ;; INSERT YOUR CODE HERE 
   ;; -----------------------
-  (list-val
-   (value list?))
+  
+  (list-val(value list?))
+  
   (rational-val
    (value pair?))
+
   (str-val
     (str string?))
+  
   ;; -----------------------
 )
 
@@ -39,14 +43,12 @@
 ;; INSERT YOUR CODE HERE 
 ;; -----------------------
 
-;; expval->lst : ExpVal -> List
 (define expval->list
   (lambda (v)
     (cases expval v
       (list-val (lst) lst)
       (else (expval-extractor-error 'list v)))))
 
-;; expval->lst : ExpVal -> Rational
 (define expval->rational
   (lambda (v)
     (cases expval v
@@ -54,13 +56,11 @@
       (num-val (num) num)
       (else (expval-extractor-error 'list v)))))
 
-
 (define expval->string
   (lambda (v)
     (cases expval v
       (str-val (str) str)
       (else (expval-extractor-error 'string v)))))
-
 
 ;; -----------------------
 
@@ -111,4 +111,13 @@
   (lambda (r)
     (cdr r)))
 
-(define empty-list '())
+;;helpers
+
+(define (list? lst)
+  (if (list? lst)
+  (if (null? lst)
+      #t
+      (if (number? (car lst))
+          (list? (cdr lst))
+          #f))
+   #f))
